@@ -284,9 +284,9 @@ impl Builder {
 
         library.cpp(true);
         library.cpp_link_stdlib(if cfg!(feature = "shared-stdcxx") {
-            "c++_shared"
-        } else {
             "c++_static"
+        } else {
+            "c++_shared"
         });
         for flag in &[
             "-std=c++17",
@@ -305,8 +305,8 @@ impl Builder {
             library.define("OBOE_ENABLE_LOGGING", "1");
         }
 
-        library.static_flag(!cfg!(feature = "shared-link"));
-        library.shared_flag(cfg!(feature = "shared-link"));
+        library.static_flag(cfg!(feature = "shared-link"));
+        library.shared_flag(!cfg!(feature = "shared-link"));
 
         library.include(self.src_dir.join("include"));
         library.include(self.src_dir.join("src"));
