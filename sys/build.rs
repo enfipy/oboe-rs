@@ -35,11 +35,7 @@ fn main() {
 
     add_libdir(builder.lib_dir);
 
-    if cfg!(feature = "shared-stdcxx") {
-        add_lib("c++_shared", false);
-    } else {
-        add_lib("c++_static", false);
-    }
+    add_lib("c++_shared", false);
 
     add_lib("oboe-ext", !cfg!(feature = "shared-link"));
 
